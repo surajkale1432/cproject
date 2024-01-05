@@ -142,7 +142,7 @@ void rawData(struct Books *book)
     book[18].starRating = 4.5;
 
     book[19].bookId = 120;
-    strcpy(book[19].bookName, "Yayati");
+    strcpy(book[19].bookName, "Tail Story");
     strcpy(book[19].bookAuthor, "V.S. Khandekar");
     strcpy(book[19].bookCategory, "Novel");
     book[19].bookPrice = 295;
