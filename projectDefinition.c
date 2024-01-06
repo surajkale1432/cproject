@@ -84,7 +84,7 @@ void doOperation(struct Books *book, int ch)
     case 2:
         printBooksInfo(book);
         break;
-    case 3:
+    case 7:
         totalBooks = totalCountofBooks(book);
         printf("\nTotal Books present in Library = %d", totalBooks);
     }
