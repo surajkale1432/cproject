@@ -13,8 +13,8 @@ void main()
     {
         printf("\n*******************************************************************\n");
         printf("\nWelcome To Book Management System.\nPlease Select Your Choice.\n");
-        printf("1. Add Book to Library.\n2. Display Book Info.\n3. Search Books by ID\n4. Search Books by Name ");
-        printf("\n5. Search Books by Author\n6. Search Books by Category.\n7. Total Books in Library\n8. Update Book Info");
+        printf("1. Add Book to Library.\n2. Display All Books Info.\n3. Search Books by ID\n4. Search Books by Name ");
+        printf("\n5. Search Books by Author\n6. Search Books by Category.\n7.Remove Book from Library\n8. Total Books in Library\n8. Update Book Info\n9. Sort Books");
         printf("\nChoice = ");
         scanf("%d", &choice);
         doOperation(book, choice);
