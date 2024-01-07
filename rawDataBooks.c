@@ -2,6 +2,7 @@
 #include "projectHeader.h"
 void rawData(struct Books *book)
 {
+    totalBooks=0;
     book[0].bookId = 1;
     strcpy(book[0].bookName, "Yayati");
     strcpy(book[0].bookAuthor, "V.S. Khandekar");

@@ -8,9 +8,9 @@ void main()
     struct Books book[50];
     char choice[20];
     int ch;
-    char* str;
+    char *str;
     rawData(book);
-
+    _label_loop1: 
     do
     {
         printf("\n*******************************************************************\n");
@@ -19,19 +19,19 @@ void main()
         printf("\n5. Search Books by Author\n6. Search Books by Category.\n7. Remove Book from Library\n8. Total Books in Library\n8. Update Book Info\n9. Sort Books");
         printf("\nChoice = ");
         scanf("%s", &choice);
-        str=choice;
-        ch=atoi(str);
+        str = choice;
+        ch = atoi(str);
         if (!(ch > 0 && ch < 10))
         {
             printf("\nOops...!!! Something Went Wrong Please Try Again Later.");
-            main();
+            goto _label_loop1;
         }
-        if (ch > 0 && ch < 10)
+        else if (ch > 0 && ch < 10)
         {
             doOperation(book, ch);
         }
-        else{
-            main();
-        }
-    } while (ch > 0 && ch < 10);
+        
+    }
+    while (ch > 0 && ch < 10)
+        ;
 }

@@ -244,7 +244,6 @@ void doOperation(struct Books *book, int ch)
         printf("\nEnter BookId to Remove Book = ");
         scanf("%d", &searchbookId);
         updateBookById(book, searchbookId);
-
-        break;
+        break;  
     }
 }
