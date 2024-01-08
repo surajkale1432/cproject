@@ -103,8 +103,8 @@ void printBooksInfobyIndex(Books *book, int bookIndex)
 }
 void searchBooksByName(Books *book, char *bookName)
 {
-    int foundIndex, i;
-    for (i = 0; i < totalBooks; i++)
+    int foundIndex=-1, i;
+    for (i = 0; i < totalBooks; i++) 
     {
         foundIndex = strcmp(book[i].bookName, bookName);
         if (foundIndex == 0)
