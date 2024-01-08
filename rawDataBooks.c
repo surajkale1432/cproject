@@ -3,7 +3,7 @@
 void rawData(struct Books *book)
 {
     totalBooks=0;
-    book[0].bookId = 1;
+    book[0].bookId = 11;
     strcpy(book[0].bookName, "Yayati");
     strcpy(book[0].bookAuthor, "V.S. Khandekar");
     strcpy(book[0].bookCategory, "Novel");
@@ -11,7 +11,7 @@ void rawData(struct Books *book)
     book[0].starRating = 4.5;
 
     totalBooks++;
-    book[1].bookId = 2;
+    book[1].bookId = 21;
     strcpy(book[1].bookName, "Mrutunjay");
     strcpy(book[1].bookAuthor, "Shivaji Sawant");
     strcpy(book[1].bookCategory, "Novel");
@@ -19,7 +19,7 @@ void rawData(struct Books *book)
     book[1].starRating = 4.5;
 
     totalBooks++;
-    book[2].bookId = 3;
+    book[2].bookId = 13;
     strcpy(book[2].bookName, "Yugandhar");
     strcpy(book[2].bookAuthor, "Shivaji Sawant");
     strcpy(book[2].bookCategory, "Novel");
@@ -27,7 +27,7 @@ void rawData(struct Books *book)
     book[2].starRating = 4.5;
 
     totalBooks++;
-    book[3].bookId = 4;
+    book[3].bookId = 34;
     strcpy(book[3].bookName, "Think Like a Monk");
     strcpy(book[3].bookAuthor, "Jay shetty");
     strcpy(book[3].bookCategory, "mind peace");
