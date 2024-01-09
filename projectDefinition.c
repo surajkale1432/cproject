@@ -14,12 +14,12 @@ void printBooksInfo(Books *book)
     int i;
     for (i = 0; i < totalBooks; i++)
     {
-        printf("\nBookId = %d", book[i].bookId);
-        printf("\nBookName = %s", book[i].bookName);
-        printf("\nBookAuthor = %s", book[i].bookAuthor);
-        printf("\nBookCategory = %s", book[i].bookCategory);
-        printf("\nBookPrice = %.2lf", book[i].bookPrice);
-        printf("\nBookRating = %.2lf", book[i].starRating);
+        printf("\nBookId        = %d", book[i].bookId);
+        printf("\nBookName      = %s", book[i].bookName);
+        printf("\nBookAuthor    = %s", book[i].bookAuthor);
+        printf("\nBookCategory  = %s", book[i].bookCategory);
+        printf("\nBookPrice     = %.2lf", book[i].bookPrice);
+        printf("\nBookRating    = %.1lf", book[i].starRating);
         printf("\n--------------------------");
     }
 }
@@ -97,7 +97,7 @@ void printBooksInfobyIndex(Books *book, int bookIndex)
         printf("\nBookAuthor   = %s", book[bookIndex].bookAuthor);
         printf("\nBookCategory = %s", book[bookIndex].bookCategory);
         printf("\nBookPrice    = %.2lf", book[bookIndex].bookPrice);
-        printf("\nBookRating   = %.2lf", book[bookIndex].starRating);
+        printf("\nBookRating   = %.1lf", book[bookIndex].starRating);
         printf("\n--------------------------");
     }
 }
@@ -109,13 +109,7 @@ void searchBooksByName(Books *book, char *bookName)
         foundIndex = strcmp(book[i].bookName, bookName);
         if (foundIndex == 0)
         {
-            printf("\nBookId       = %d", i, book[i].bookId);
-            printf("\nBookName     = %s", i, book[i].bookName);
-            printf("\nBookAuthor   = %s", i, book[i].bookAuthor);
-            printf("\nBookCategory = %s", i, book[i].bookCategory);
-            printf("\nBookPrice    = %.2lf", book[i].bookPrice);
-            printf("\nBookRatings  = %.2lf", book[i].starRating);
-            printf("\n");
+            printBooksInfobyIndex(book,i);
         }
 
         // printf("\nbookName = %s", bookName);
@@ -130,14 +124,7 @@ void searchBooksByAuthor(Books *book, char *bookAuthor)
         foundIndex = strcmp(book[i].bookAuthor, bookAuthor);
         if (foundIndex == 0)
         {
-            printf("\nBookId       = %d", i, book[i].bookId);
-            printf("\nBookName     = %s", i, book[i].bookName);
-            printf("\nBookAuthor   = %s", i, book[i].bookAuthor);
-            printf("\nBookCategory = %s", i, book[i].bookCategory);
-            printf("\nBookPrice    = %.2lf", book[i].bookPrice);
-            printf("\nBookRatings  = %.2lf", book[i].starRating);
-            printf("\n");
-            // break;
+            printBooksInfobyIndex(book,i);
         }
     }
     if (foundIndex == -1)
@@ -240,7 +227,7 @@ void updateBookById(Books *book, int bookId)
 
         if (book[i].bookId == bookId)
         {
-            printf("\nEnter bookPrice for %s = ",book[i].bookName);
+            printf("\nEnter bookPrice for %s   = ",book[i].bookName);
             scanf("%lf",&book[i].bookPrice);
             printf("\nEnter StarRatings for %s = ",book[i].bookName);
             scanf("%lf",&book[i].starRating);
