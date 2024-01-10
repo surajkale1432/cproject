@@ -3,6 +3,7 @@
 #ifndef BOOK
 #define BOOK
 int totalBooks=0;
+int size=20;
 typedef struct Books
 {
     int bookId;

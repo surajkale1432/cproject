@@ -6,8 +6,11 @@ int totalCountofBooks(Books *book)
 {
     return totalBooks;
 }
-struct Books storeBooksInfo(Books *book, int num)
+Books* resizeStructArray(Books *book,int totalSize)
 {
+    printf("\nEnter New SIZE = ");
+    scanf("%d",&size);
+    book=(Books*)realloc(book,(size+totalSize)*sizeof(Books));
 }
 void printBooksInfo(Books *book)
 {
@@ -106,7 +109,7 @@ void searchBooksByName(Books *book, char *bookName)
     int foundIndex=-1, i;
     for (i = 0; i < totalBooks; i++) 
     {
-        foundIndex = strcmp(book[i].bookName, bookName);
+        foundIndex = strcasecmp(book[i].bookName, bookName);
         if (foundIndex == 0)
         {
             printBooksInfobyIndex(book,i);
@@ -121,7 +124,7 @@ void searchBooksByAuthor(Books *book, char *bookAuthor)
     int foundIndex = -1, i;
     for (i = 0; i < totalBooks; i++)
     {
-        foundIndex = strcmp(book[i].bookAuthor, bookAuthor);
+        foundIndex = strcasecmp(book[i].bookAuthor, bookAuthor);
         if (foundIndex == 0)
         {
             printBooksInfobyIndex(book,i);
@@ -163,7 +166,7 @@ void sortBookBy(Books *book, int ch)
             }
             else if (ch == 2 && order == 1) // sortBooksBybookName
             {
-                if (strcmp(book[i].bookName, book[j].bookName) == 1)
+                if (strcasecmp(book[i].bookName, book[j].bookName) == 1)
                 {
                     Books b = book[i];
                     book[i] = book[j];
@@ -172,7 +175,7 @@ void sortBookBy(Books *book, int ch)
             }
             else if (ch == 2 && order == 2)
             {
-                if (strcmp(book[i].bookName, book[j].bookName) == -1)
+                if (strcasecmp(book[i].bookName, book[j].bookName) == -1)
                 {
                     Books b = book[i];
                     book[i] = book[j];
@@ -245,7 +248,7 @@ void searchBooksByCategory(Books *book, char *bookCategory)
     int foundIndex = -1, i;
     for (i = 0; i < totalBooks; i++)
     {
-        foundIndex = strcmp(book[i].bookCategory, bookCategory);
+        foundIndex = strcasecmp(book[i].bookCategory, bookCategory);
         if (foundIndex == 0)
         {
             printf("\nBookId       = %d", i, book[i].bookId);
