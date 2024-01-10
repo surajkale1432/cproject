@@ -114,7 +114,6 @@ void searchBooksByName(Books *book, char *bookName)
         {
             printBooksInfobyIndex(book,i);
         }
-
         // printf("\nbookName = %s", bookName);
     }
 }
@@ -251,12 +250,12 @@ void searchBooksByCategory(Books *book, char *bookCategory)
         foundIndex = strcasecmp(book[i].bookCategory, bookCategory);
         if (foundIndex == 0)
         {
-            printf("\nBookId       = %d", i, book[i].bookId);
-            printf("\nBookName     = %s", i, book[i].bookName);
-            printf("\nBookAuthor   = %s", i, book[i].bookAuthor);
-            printf("\nBookCategory = %s", i, book[i].bookCategory);
+            printf("\nBookId       = %d", book[i].bookId);
+            printf("\nBookName     = %s", book[i].bookName);
+            printf("\nBookAuthor   = %s", book[i].bookAuthor);
+            printf("\nBookCategory = %s", book[i].bookCategory);
             printf("\nBookPrice    = %.2lf", book[i].bookPrice);
-            printf("\nBookRatings  = %.2lf", book[i].starRating);
+            printf("\nBookRatings  = %.1lf", book[i].starRating);
             printf("\n");
             // break;
         }
