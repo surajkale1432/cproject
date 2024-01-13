@@ -46,6 +46,6 @@ void main()
         {
             doOperation(book, ch);
         }
-    }
+    } 
     while (ch > 0 && ch < 11);
 }
