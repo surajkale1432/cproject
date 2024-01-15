@@ -11,6 +11,7 @@ Books *resizeStructArray(Books *book, int totalSize)
     printf("\nEnter New SIZE = ");
     scanf("%d", &size);
     book = (Books *)realloc(book, (size + totalSize) * sizeof(Books));
+    return book;
 }
 void printBooksInfo(Books *book)
 {
@@ -70,20 +71,13 @@ int searchBooksById(Books *book, int bookId)
     if (foundIndex == -1)
     {
         printf("\nError: ID not found");
+        return -1;
     }
 }
-void removeBookById(Books *book, int bookId)
+void removeBookById(Books *book, int index)
 {
-    int index = -1;
-    index = searchBooksById(book, bookId);
     int i;
-    for (i = 0; i < totalBooks; i++)
-    {
-        if (book[i].bookId == bookId)
-        {
-            index = i;
-        }
-    }
+    int id = book[index].bookId;
     if (index != -1)
     {
         for (i = index; i < totalBooks - 1; ++i)
@@ -91,7 +85,7 @@ void removeBookById(Books *book, int bookId)
             book[i] = book[i + 1];
         }
         totalBooks--;
-        printf("\nBook with Id = %d Deleted Successfully", bookId);
+        printf("\nBook with Id = %d Deleted Successfully",id);
     }
     else
         printf("\nError: Book with this ID not found.\n");
@@ -320,9 +314,14 @@ void doOperation(Books *book, int ch)
         break;
 
     case 7:
+
         printf("\nEnter BookId to Remove Book = ");
         scanf("%d", &searchbookId);
-        removeBookById(book, searchbookId);
+        foundIndex = searchBooksById(book, searchbookId);
+        if (foundIndex != -1)
+        {
+            removeBookById(book, foundIndex);
+        }
         break;
 
     case 8:
