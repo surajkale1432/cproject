@@ -6,8 +6,11 @@ int totalCountofBooks(Books *book)
 {
     return totalBooks;
 }
-struct Books storeBooksInfo(Books *book, int num)
+Books *resizeStructArray(Books *book, int totalSize)
 {
+    printf("\nEnter New SIZE = ");
+    scanf("%d", &size);
+    book = (Books *)realloc(book, (size + totalSize) * sizeof(Books));
 }
 void printBooksInfo(Books *book)
 {
@@ -26,26 +29,32 @@ void printBooksInfo(Books *book)
 void addBookInfo(Books *book)
 {
     int i;
-    for (i = 0; i < 1; i++)
+    printf("\nEnter Book Id = ");
+    scanf("%d", &book[totalBooks].bookId);
+    for (int j = 0; j < totalBooks; j++)
     {
-        printf("\nEnter Book Id = ");
-        scanf("%d", &book[totalBooks].bookId);
-        printf("\nEnter Book Name = ");
-        fflush(stdin);
-        gets(book[totalBooks].bookName);
-        printf("\nEnter Book Author = ");
-        fflush(stdin);
-        gets(book[totalBooks].bookAuthor);
-        printf("\nEnter Book Category = ");
-        fflush(stdin);
-        gets(book[totalBooks].bookCategory);
-        printf("\nEnter Book Price = ");
-        scanf("%lf", &book[totalBooks].bookPrice);
-        printf("\nEnter Book Rating in Star * = ");
-        scanf("%lf", &book[totalBooks].starRating);
-        totalBooks++;
-        printf("\nBook Added Successfully...");
+        if (book[totalBooks].bookId == book[j].bookId)
+        {
+            printf("\n%d Id already present use another", book[totalBooks].bookId);
+            // addBookInfo(book);
+            return;
+        }
     }
+    printf("\nEnter Book Name = ");
+    fflush(stdin);
+    gets(book[totalBooks].bookName);
+    printf("\nEnter Book Author = ");
+    fflush(stdin);
+    gets(book[totalBooks].bookAuthor);
+    printf("\nEnter Book Category = ");
+    fflush(stdin);
+    gets(book[totalBooks].bookCategory);
+    printf("\nEnter Book Price = ");
+    scanf("%lf", &book[totalBooks].bookPrice);
+    printf("\nEnter Book Rating in Star * = ");
+    scanf("%lf", &book[totalBooks].starRating);
+    totalBooks++;
+    printf("\nBook Added Successfully...");
 }
 int searchBooksById(Books *book, int bookId)
 {
@@ -65,8 +74,8 @@ int searchBooksById(Books *book, int bookId)
 }
 void removeBookById(Books *book, int bookId)
 {
-    int index=-1;
-    index = searchBooksById(book,bookId);
+    int index = -1;
+    index = searchBooksById(book, bookId);
     int i;
     for (i = 0; i < totalBooks; i++)
     {
@@ -103,31 +112,35 @@ void printBooksInfobyIndex(Books *book, int bookIndex)
 }
 void searchBooksByName(Books *book, char *bookName)
 {
-    int foundIndex=-1, i;
-    for (i = 0; i < totalBooks; i++) 
+    int foundIndex = -1, i, flag = 0;
+    for (i = 0; i < totalBooks; i++)
     {
-        foundIndex = strcmp(book[i].bookName, bookName);
+        foundIndex = strcasecmp(book[i].bookName, bookName);
         if (foundIndex == 0)
         {
-            printBooksInfobyIndex(book,i);
+            printBooksInfobyIndex(book, i);
+            flag++;
         }
-
-        // printf("\nbookName = %s", bookName);
+    }
+    if (flag == 0)
+    {
+        printf("\nError : Book Not found with Name %s", bookName);
     }
 }
 
 void searchBooksByAuthor(Books *book, char *bookAuthor)
 {
-    int foundIndex = -1, i;
+    int foundIndex = -2, i, flag = 0;
     for (i = 0; i < totalBooks; i++)
     {
-        foundIndex = strcmp(book[i].bookAuthor, bookAuthor);
+        foundIndex = strcasecmp(book[i].bookAuthor, bookAuthor);
         if (foundIndex == 0)
         {
-            printBooksInfobyIndex(book,i);
+            flag++;
+            printBooksInfobyIndex(book, i);
         }
     }
-    if (foundIndex == -1)
+    if (flag == 0)
     {
         printf("\nError : Result Not found for %s", bookAuthor);
     }
@@ -163,7 +176,7 @@ void sortBookBy(Books *book, int ch)
             }
             else if (ch == 2 && order == 1) // sortBooksBybookName
             {
-                if (strcmp(book[i].bookName, book[j].bookName) == 1)
+                if (strcasecmp(book[i].bookName, book[j].bookName) == 1)
                 {
                     Books b = book[i];
                     book[i] = book[j];
@@ -172,7 +185,7 @@ void sortBookBy(Books *book, int ch)
             }
             else if (ch == 2 && order == 2)
             {
-                if (strcmp(book[i].bookName, book[j].bookName) == -1)
+                if (strcasecmp(book[i].bookName, book[j].bookName) == -1)
                 {
                     Books b = book[i];
                     book[i] = book[j];
@@ -227,10 +240,10 @@ void updateBookById(Books *book, int bookId)
 
         if (book[i].bookId == bookId)
         {
-            printf("\nEnter bookPrice for %s   = ",book[i].bookName);
-            scanf("%lf",&book[i].bookPrice);
-            printf("\nEnter StarRatings for %s = ",book[i].bookName);
-            scanf("%lf",&book[i].starRating);
+            printf("\nEnter bookPrice for %s   = ", book[i].bookName);
+            scanf("%lf", &book[i].bookPrice);
+            printf("\nEnter StarRatings for %s = ", book[i].bookName);
+            scanf("%lf", &book[i].starRating);
             printf("\nPrice and StarRating Updated...!!!");
             foundIndex++;
         }
@@ -242,23 +255,24 @@ void updateBookById(Books *book, int bookId)
 }
 void searchBooksByCategory(Books *book, char *bookCategory)
 {
-    int foundIndex = -1, i;
+    int foundIndex = -1, i, flag = 0;
     for (i = 0; i < totalBooks; i++)
     {
-        foundIndex = strcmp(book[i].bookCategory, bookCategory);
+        foundIndex = strcasecmp(book[i].bookCategory, bookCategory);
         if (foundIndex == 0)
         {
-            printf("\nBookId       = %d", i, book[i].bookId);
-            printf("\nBookName     = %s", i, book[i].bookName);
-            printf("\nBookAuthor   = %s", i, book[i].bookAuthor);
-            printf("\nBookCategory = %s", i, book[i].bookCategory);
+            printf("\nBookId       = %d", book[i].bookId);
+            printf("\nBookName     = %s", book[i].bookName);
+            printf("\nBookAuthor   = %s", book[i].bookAuthor);
+            printf("\nBookCategory = %s", book[i].bookCategory);
             printf("\nBookPrice    = %.2lf", book[i].bookPrice);
-            printf("\nBookRatings  = %.2lf", book[i].starRating);
+            printf("\nBookRatings  = %.1lf", book[i].starRating);
             printf("\n");
+            flag++;
             // break;
         }
     }
-    if (foundIndex == -1)
+    if (flag == 0)
     {
         printf("\nError : Result Not found for %s", bookCategory);
     }
