@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include "projectHeader.h"
 #include <string.h>
-int totalCountofBooks(Book*book)
+int totalCountofBooks(Book *book)
 {
     return totalBooks;
 }
-Book* resizeStructArray(Book*book, int totalSize)
+Book *resizeStructArray(Book *book, int totalSize)
 {
     printf("\nEnter New SIZE = ");
     scanf("%d", &size);
-    book = (Book*)realloc(book, (size + totalSize) * sizeof(Book));
+    book = (Book *)realloc(book, (size + totalSize) * sizeof(Book));
     return book;
 }
-void printBooksInfo(Book*book)
+void printBooksInfo(Book *book)
 {
     int i;
     for (i = 0; i < totalBooks; i++)
@@ -27,7 +27,7 @@ void printBooksInfo(Book*book)
         printf("\n--------------------------");
     }
 }
-void addBookInfo(Book*book)
+void addBookInfo(Book *book)
 {
     int i;
     printf("\nEnter Book Id = ");
@@ -57,7 +57,7 @@ void addBookInfo(Book*book)
     totalBooks++;
     printf("\nBook Added Successfully...");
 }
-int searchBooksById(Book*book, int bookId)
+int searchBooksById(Book *book, int bookId)
 {
     int foundIndex = -1, i;
     for (i = 0; i < totalBooks; i++)
@@ -71,7 +71,7 @@ int searchBooksById(Book*book, int bookId)
     printf("\nError: ID not found");
     return -1;
 }
-void removeBookById(Book*book, int index)
+void removeBookById(Book *book, int index)
 {
     int i;
     int id = book[index].bookId;
@@ -87,7 +87,7 @@ void removeBookById(Book*book, int index)
     else
         printf("\nError: Book with this ID not found.\n");
 }
-void printBooksInfobyIndex(Book*book, int bookIndex)
+void printBooksInfobyIndex(Book *book, int bookIndex)
 {
 
     if (bookIndex != -1)
@@ -101,7 +101,7 @@ void printBooksInfobyIndex(Book*book, int bookIndex)
         printf("\n--------------------------");
     }
 }
-void searchBooksByName(Book*book, char *bookName)
+void searchBooksByName(Book *book, char *bookName)
 {
     int foundIndex = -1, i, flag = 0;
     for (i = 0; i < totalBooks; i++)
@@ -118,8 +118,7 @@ void searchBooksByName(Book*book, char *bookName)
         printf("\nError : Book Not found with Name %s", bookName);
     }
 }
-
-void searchBooksByAuthor(Book*book, char *bookAuthor)
+void searchBooksByAuthor(Book *book, char *bookAuthor)
 {
     int foundIndex = -2, i, flag = 0;
     for (i = 0; i < totalBooks; i++)
@@ -136,7 +135,7 @@ void searchBooksByAuthor(Book*book, char *bookAuthor)
         printf("\nError : Result Not found for %s", bookAuthor);
     }
 }
-void sortBookBy(Book*book, int ch)
+void sortBookBy(Book *book, int ch)
 {
     int order;
 
@@ -223,7 +222,7 @@ void sortBookBy(Book*book, int ch)
     }
     printf("\nSorting Done .....!");
 }
-void updateBookById(Book*book, int bookIndex)
+void updateBookById(Book *book, int bookIndex)
 {
 
     printf("\nEnter bookPrice for %s   = ", book[bookIndex].bookName);
@@ -232,7 +231,7 @@ void updateBookById(Book*book, int bookIndex)
     scanf("%lf", &book[bookIndex].starRating);
     printf("\nPrice and StarRating Updated...!!!");
 }
-void searchBooksByCategory(Book*book, char *bookCategory)
+void searchBooksByCategory(Book *book, char *bookCategory)
 {
     int foundIndex = -1, i, flag = 0;
     for (i = 0; i < totalBooks; i++)
@@ -256,12 +255,16 @@ void searchBooksByCategory(Book*book, char *bookCategory)
         printf("\nError : Result Not found for %s", bookCategory);
     }
 }
-void doOperation(Book*book, int ch)
+void doOperation(Book *book, int ch)
 {
     int totalBooks, searchbookId, foundIndex;
     char searchBookName[20], searchBookAuthor[20], searchBookCategory[20];
     switch (ch)
     {
+    case 0:
+        printf("\nThank you for Using Book Management System ...!!!");
+        exit(0);
+
     case 1:
         addBookInfo(book);
         break;
@@ -333,5 +336,6 @@ void doOperation(Book*book, int ch)
         break;
     default:
         printf("\nWrong Input please Try again...!!!");
+        return;
     }
 }

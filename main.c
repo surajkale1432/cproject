@@ -5,11 +5,10 @@
 #include "rawDataBooks.c"
 void main()
 {
-    struct Book*book;
+    struct Book* book;
     book = (Book*)malloc(sizeof(Book) * size);
     char choice[20];
     int ch = 0;
-    char *str;
     char chch;
     rawData(book);
     do
@@ -51,7 +50,8 @@ void main()
         }
         else
         {
-            printf("Error");
+            printf("\n Error: wrong Input");
         }
-    } while (ch != 11);
+    } while (ch);
+    free(book);
 }
