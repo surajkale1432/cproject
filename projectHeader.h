@@ -14,7 +14,7 @@ typedef struct Books
     double starRating;
 }Books;
 int totalCountofBooks( Books *);
-struct Books storeBooksInfo(Books *,int);
+// struct Books storeBooksInfo(Books *,int);
 void printBooksInfo(Books *);
 int searchBooksById(Books *, int);
 void removeBookById(Books*,int);

@@ -226,26 +226,14 @@ void sortBookBy(Books *book, int ch)
     }
     printf("\nSorting Done .....!");
 }
-void updateBookById(Books *book, int bookId)
+void updateBookById(Books *book, int bookIndex)
 {
-    int foundIndex = -1, i;
-    for (i = 0; i < totalBooks; i++)
-    {
-
-        if (book[i].bookId == bookId)
-        {
-            printf("\nEnter bookPrice for %s   = ", book[i].bookName);
-            scanf("%lf", &book[i].bookPrice);
-            printf("\nEnter StarRatings for %s = ", book[i].bookName);
-            scanf("%lf", &book[i].starRating);
+    
+            printf("\nEnter bookPrice for %s   = ", book[bookIndex].bookName);
+            scanf("%lf", &book[bookIndex].bookPrice);
+            printf("\nEnter StarRatings for %s = ", book[bookIndex].bookName);
+            scanf("%lf", &book[bookIndex].starRating);
             printf("\nPrice and StarRating Updated...!!!");
-            foundIndex++;
-        }
-    }
-    if (foundIndex == -1)
-    {
-        printf("\nError : Result Not found");
-    }
 }
 void searchBooksByCategory(Books *book, char *bookCategory)
 {
@@ -289,7 +277,10 @@ void doOperation(Books *book, int ch)
         printf("\nEnter Id to Search Book = ");
         scanf("%d", &searchbookId);
         foundIndex = searchBooksById(book, searchbookId);
-        printBooksInfobyIndex(book, foundIndex);
+        if(foundIndex!=-1)
+        {
+            printBooksInfobyIndex(book, foundIndex);
+        }
         break;
 
     case 4:
@@ -332,7 +323,11 @@ void doOperation(Books *book, int ch)
     case 9:
         printf("\nEnter BookId to Update Book = ");
         scanf("%d", &searchbookId);
-        updateBookById(book, searchbookId);
+        foundIndex = searchBooksById(book, searchbookId);
+        if (foundIndex != -1)
+        {
+            updateBookById(book, foundIndex);
+        }
         break;
     case 10:
         printf("\n1. Sort By bookId\n2. Sort By booName\n3. Sort By bookPrice\n4. Sort By StarRatings\nChoice = ");
