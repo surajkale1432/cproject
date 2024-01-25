@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include "projectHeader.h"
 #include <string.h>
-int totalCountofBooks(Books *book)
+int totalCountofBooks(Book*book)
 {
     return totalBooks;
 }
-Books *resizeStructArray(Books *book, int totalSize)
+Book* resizeStructArray(Book*book, int totalSize)
 {
     printf("\nEnter New SIZE = ");
     scanf("%d", &size);
-    book = (Books *)realloc(book, (size + totalSize) * sizeof(Books));
+    book = (Book*)realloc(book, (size + totalSize) * sizeof(Book));
     return book;
 }
-void printBooksInfo(Books *book)
+void printBooksInfo(Book*book)
 {
     int i;
     for (i = 0; i < totalBooks; i++)
@@ -27,7 +27,7 @@ void printBooksInfo(Books *book)
         printf("\n--------------------------");
     }
 }
-void addBookInfo(Books *book)
+void addBookInfo(Book*book)
 {
     int i;
     printf("\nEnter Book Id = ");
@@ -57,7 +57,7 @@ void addBookInfo(Books *book)
     totalBooks++;
     printf("\nBook Added Successfully...");
 }
-int searchBooksById(Books *book, int bookId)
+int searchBooksById(Book*book, int bookId)
 {
     int foundIndex = -1, i;
     for (i = 0; i < totalBooks; i++)
@@ -68,13 +68,10 @@ int searchBooksById(Books *book, int bookId)
             return foundIndex;
         }
     }
-    if (foundIndex == -1)
-    {
-        printf("\nError: ID not found");
-        return -1;
-    }
+    printf("\nError: ID not found");
+    return -1;
 }
-void removeBookById(Books *book, int index)
+void removeBookById(Book*book, int index)
 {
     int i;
     int id = book[index].bookId;
@@ -85,12 +82,12 @@ void removeBookById(Books *book, int index)
             book[i] = book[i + 1];
         }
         totalBooks--;
-        printf("\nBook with Id = %d Deleted Successfully",id);
+        printf("\nBook with Id = %d Deleted Successfully", id);
     }
     else
         printf("\nError: Book with this ID not found.\n");
 }
-void printBooksInfobyIndex(Books *book, int bookIndex)
+void printBooksInfobyIndex(Book*book, int bookIndex)
 {
 
     if (bookIndex != -1)
@@ -104,7 +101,7 @@ void printBooksInfobyIndex(Books *book, int bookIndex)
         printf("\n--------------------------");
     }
 }
-void searchBooksByName(Books *book, char *bookName)
+void searchBooksByName(Book*book, char *bookName)
 {
     int foundIndex = -1, i, flag = 0;
     for (i = 0; i < totalBooks; i++)
@@ -122,7 +119,7 @@ void searchBooksByName(Books *book, char *bookName)
     }
 }
 
-void searchBooksByAuthor(Books *book, char *bookAuthor)
+void searchBooksByAuthor(Book*book, char *bookAuthor)
 {
     int foundIndex = -2, i, flag = 0;
     for (i = 0; i < totalBooks; i++)
@@ -139,7 +136,7 @@ void searchBooksByAuthor(Books *book, char *bookAuthor)
         printf("\nError : Result Not found for %s", bookAuthor);
     }
 }
-void sortBookBy(Books *book, int ch)
+void sortBookBy(Book*book, int ch)
 {
     int order;
 
@@ -154,7 +151,7 @@ void sortBookBy(Books *book, int ch)
             {
                 if (book[i].bookId > book[j].bookId)
                 {
-                    Books b = book[i];
+                    Book b = book[i];
                     book[i] = book[j];
                     book[j] = b;
                 }
@@ -163,7 +160,7 @@ void sortBookBy(Books *book, int ch)
             {
                 if (book[i].bookId < book[j].bookId)
                 {
-                    Books b = book[i];
+                    Book b = book[i];
                     book[i] = book[j];
                     book[j] = b;
                 }
@@ -172,7 +169,7 @@ void sortBookBy(Books *book, int ch)
             {
                 if (strcasecmp(book[i].bookName, book[j].bookName) == 1)
                 {
-                    Books b = book[i];
+                    Book b = book[i];
                     book[i] = book[j];
                     book[j] = b;
                 }
@@ -181,7 +178,7 @@ void sortBookBy(Books *book, int ch)
             {
                 if (strcasecmp(book[i].bookName, book[j].bookName) == -1)
                 {
-                    Books b = book[i];
+                    Book b = book[i];
                     book[i] = book[j];
                     book[j] = b;
                 }
@@ -190,7 +187,7 @@ void sortBookBy(Books *book, int ch)
             {
                 if (book[i].bookPrice > book[j].bookPrice)
                 {
-                    Books b = book[i];
+                    Book b = book[i];
                     book[i] = book[j];
                     book[j] = b;
                 }
@@ -199,7 +196,7 @@ void sortBookBy(Books *book, int ch)
             {
                 if (book[i].bookPrice < book[j].bookPrice)
                 {
-                    Books b = book[i];
+                    Book b = book[i];
                     book[i] = book[j];
                     book[j] = b;
                 }
@@ -208,7 +205,7 @@ void sortBookBy(Books *book, int ch)
             {
                 if (book[i].starRating > book[j].starRating)
                 {
-                    Books b = book[i];
+                    Book b = book[i];
                     book[i] = book[j];
                     book[j] = b;
                 }
@@ -217,7 +214,7 @@ void sortBookBy(Books *book, int ch)
             {
                 if (book[i].starRating < book[j].starRating)
                 {
-                    Books b = book[i];
+                    Book b = book[i];
                     book[i] = book[j];
                     book[j] = b;
                 }
@@ -226,16 +223,16 @@ void sortBookBy(Books *book, int ch)
     }
     printf("\nSorting Done .....!");
 }
-void updateBookById(Books *book, int bookIndex)
+void updateBookById(Book*book, int bookIndex)
 {
-    
-            printf("\nEnter bookPrice for %s   = ", book[bookIndex].bookName);
-            scanf("%lf", &book[bookIndex].bookPrice);
-            printf("\nEnter StarRatings for %s = ", book[bookIndex].bookName);
-            scanf("%lf", &book[bookIndex].starRating);
-            printf("\nPrice and StarRating Updated...!!!");
+
+    printf("\nEnter bookPrice for %s   = ", book[bookIndex].bookName);
+    scanf("%lf", &book[bookIndex].bookPrice);
+    printf("\nEnter StarRatings for %s = ", book[bookIndex].bookName);
+    scanf("%lf", &book[bookIndex].starRating);
+    printf("\nPrice and StarRating Updated...!!!");
 }
-void searchBooksByCategory(Books *book, char *bookCategory)
+void searchBooksByCategory(Book*book, char *bookCategory)
 {
     int foundIndex = -1, i, flag = 0;
     for (i = 0; i < totalBooks; i++)
@@ -259,7 +256,7 @@ void searchBooksByCategory(Books *book, char *bookCategory)
         printf("\nError : Result Not found for %s", bookCategory);
     }
 }
-void doOperation(Books *book, int ch)
+void doOperation(Book*book, int ch)
 {
     int totalBooks, searchbookId, foundIndex;
     char searchBookName[20], searchBookAuthor[20], searchBookCategory[20];
@@ -277,7 +274,7 @@ void doOperation(Books *book, int ch)
         printf("\nEnter Id to Search Book = ");
         scanf("%d", &searchbookId);
         foundIndex = searchBooksById(book, searchbookId);
-        if(foundIndex!=-1)
+        if (foundIndex != -1)
         {
             printBooksInfobyIndex(book, foundIndex);
         }
@@ -334,5 +331,7 @@ void doOperation(Books *book, int ch)
         scanf("%d", &ch);
         sortBookBy(book, ch);
         break;
+    default:
+        printf("\nWrong Input please Try again...!!!");
     }
 }

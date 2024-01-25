@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "projectHeader.h"
-void rawData(struct Books *book)
+void rawData(struct Book*book)
 {
     totalBooks=0;
     book[0].bookId = 61;

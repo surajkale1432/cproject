@@ -5,14 +5,13 @@
 #include "rawDataBooks.c"
 void main()
 {
-    struct Books *book;
-    book = (Books *)malloc(sizeof(Books) * size);
+    struct Book*book;
+    book = (Book*)malloc(sizeof(Book) * size);
     char choice[20];
-    int ch;    
+    int ch = 0;
     char *str;
     char chch;
     rawData(book);
-_label_loop1:
     do
     {
         printf("\n*******************************************************************\n");
@@ -20,16 +19,17 @@ _label_loop1:
         printf("1. Add Book to Library.\n2. Display All Books Info.\n3. Search Books by ID\n4. Search Books by Name ");
         printf("\n5. Search Books by Author\n6. Search Books by Category.\n7. Remove Book from Library\n8. Total Books in Library\n9. Update Book Info\n10. Sort Books\n0. Exit");
         printf("\nChoice = ");
-        scanf("%s", &choice);
-        str = choice;
-        ch = atoi(str);
-        if (!(ch > 0 && ch < 11))
+        fflush(stdin);
+        if (scanf("%d", &ch))
         {
-            printf("\nOops...!!! Something Went Wrong Please Try Again Later.");
-            goto _label_loop1;
-        }
-        else if (ch > 0 && ch < 11)
-        {
+            // str = choice;
+            // ch = atoi(str);
+            // if (!(ch > 0 && ch < 11))
+            // {
+            //     printf("\nOops...!!! Something Went Wrong Please Try Again Later.");
+            // }
+            // else if (ch > 0 && ch < 11)
+            // {
             if (ch == 1)
             {
                 if (totalBooks == size)
@@ -49,5 +49,9 @@ _label_loop1:
             }
             doOperation(book, ch);
         }
-    } while (ch > 0 && ch < 11);
+        else
+        {
+            printf("Error");
+        }
+    } while (ch != 11);
 }

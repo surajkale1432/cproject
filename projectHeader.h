@@ -4,7 +4,7 @@
 #define BOOK
 int totalBooks=0;
 int size=20;
-typedef struct Books
+typedef struct Book
 {
     int bookId;
     char bookName[30];
@@ -12,17 +12,17 @@ typedef struct Books
     char bookCategory[30];
     double bookPrice;
     double starRating;
-}Books;
-int totalCountofBooks( Books *);
+}Book;
+int totalCountofBooks( Book*);
 // struct Books storeBooksInfo(Books *,int);
-void printBooksInfo(Books *);
-int searchBooksById(Books *, int);
-void removeBookById(Books*,int);
-void searchBooksByName(Books *, char *);
-void searchBooksByAuthor(Books *, char *);
-void searchBooksByCategory(Books *, char *);
-void doOperation (Books*,int);
-void addBookInfo(Books *);
-void printBooksInfobyIndex(Books *, int);
-void sortBookBy(Books*,int);
+void printBooksInfo(Book*);
+int searchBooksById(Book*, int);
+void removeBookById(Book*,int);
+void searchBooksByName(Book*, char *);
+void searchBooksByAuthor(Book*, char *);
+void searchBooksByCategory(Book*, char *);
+void doOperation (Book*,int);
+void addBookInfo(Book*);
+void printBooksInfobyIndex(Book*, int);
+void sortBookBy(Book*,int);
 #endif
