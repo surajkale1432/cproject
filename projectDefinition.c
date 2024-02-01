@@ -261,7 +261,7 @@ void doOperation(Book *book, int ch)
     char searchBookName[20], searchBookAuthor[20], searchBookCategory[20];
     switch (ch)
     {
-    case 0:
+    case 11:
         printf("\nThank you for Using Book Management System ...!!!");
         exit(0);
 
